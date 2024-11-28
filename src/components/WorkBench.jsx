@@ -1,7 +1,3 @@
 export const WorkBench = () => {
-  return (
-    <div>
-      Hey
-    </div>
-  );
-}
+	return <div>Hey</div>;
+};
