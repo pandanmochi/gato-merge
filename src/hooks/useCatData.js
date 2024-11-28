@@ -5,7 +5,9 @@
 export const useCatData = () => {
     const initialCats = ['el-gato', 'happy'];
     const allCats = ['el-gato', 'happy', 'standing'];
-    const combinations = ['standing', ['el-gato', 'happy']];
+    const combinations = {
+        'el-gato, happy': 'standing',
+    };
 
     return {
         initialCats,
