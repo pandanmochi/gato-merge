@@ -17,9 +17,9 @@ const App = () => {
      * @param {string} eventData.y
      */
     const handleItemDrop = ({ name, x, y }) => {
-        const workbench = workBenchRef.current.children[0];
-        const workbenchChildren = Array.from(workbench.children);
-        const dropTargetIndex = workbenchChildren.findIndex((child) => {
+        const dropZone = document.querySelector('#drop-zone')
+        const dropZoneChildren = Array.from(dropZone.children);
+        const dropTargetIndex = dropZoneChildren.findIndex((child) => {
             console.log(child);
             const rect = child.getBoundingClientRect();
             return (
