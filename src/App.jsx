@@ -73,8 +73,8 @@ const App = () => {
     };
 
     return (
-        <div className="flex h-screen w-screen flex-col bg-orange-950 text-white">
-            <div className="flex h-full w-full">
+        <div className="font-mono text-gato-blue-3 flex w-screen min-h-screen flex-col bg-gato-blue-1">
+            <div className="flex h-full w-full p-6 gap-6">
                 <div ref={workBenchRef} className="w-3/4">
                     <WorkBench
                         items={workBenchItems}

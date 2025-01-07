@@ -1,4 +1,5 @@
 import { Item } from './Item';
+import { Window } from './Window';
 
 export const WorkBench = ({ items, onItemDrop }) => {
     /**
@@ -16,19 +17,28 @@ export const WorkBench = ({ items, onItemDrop }) => {
     };
 
     return (
-        <div
-            id="drop-zone"
-            className="grid h-screen grid-flow-col grid-cols-5 grid-rows-4 items-center py-7 pl-12"
-            onDrop={handleDrop}
-            onDragOver={(e) => e.preventDefault()}
+        <Window
+            windowTitle="gato-merge"
+            tabColor="bg-gato-pink-2"
+            bgColor="bg-gato-pink-1"
         >
-            {items.map((item, key) => (
-                <Item
-                    key={`workbench-item-${key}`}
-                    isCatMenu={false}
-                    name={item}
-                />
-            ))}
-        </div>
+            <div className="h-[calc(100vh-100px)] p-7">
+                <div
+                    id="drop-zone"
+                    className="bg-blue-checkerboard grid h-[95%] grid-flow-col grid-cols-5 grid-rows-4 items-center rounded-md border-2 border-gato-blue-2 bg-cover p-6 shadow-inner"
+                    onDrop={handleDrop}
+                    onDragOver={(e) => e.preventDefault()}
+                >
+                    {items.map((item, key) => (
+                        <Item
+                            key={`workbench-item-${key}`}
+                            isCatMenu={false}
+                            name={item}
+                        />
+                    ))}
+                </div>
+                <div className="">hello</div>
+            </div>
+        </Window>
     );
 };

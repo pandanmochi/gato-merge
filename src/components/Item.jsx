@@ -22,8 +22,8 @@ export const Item = ({ name, isCatMenu = false }) => {
     return (
         <div className="flex h-32 flex-row items-center space-x-3">
             <img
-                src={`/src/assets/png/${name}.png`}
-                className="h-32 w-32 border-4 border-yellow-500"
+                src={`/src/assets/images/cats/${name}.png`}
+                className="h-28 w-28 object-contain"
                 alt={name}
                 draggable={true}
                 ref={itemRef}
