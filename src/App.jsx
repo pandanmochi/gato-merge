@@ -13,10 +13,12 @@ const App = () => {
      * Handles the drop of an item over the work bench area.
      * @param {Object} eventData
      * @param {string} eventData.name
-     * @param {string} eventData.x
-     * @param {string} eventData.y
+     * @param {number} eventData.x
+     * @param {number} eventData.y
+     * @param {number?} eventData.initialX
+     * @param {number?} eventData.initialY
      */
-    const handleItemDrop = ({ name, x, y }) => {
+    const handleItemDrop = ({ name, x, y, initialX, initialY }) => {
         const dropZone = document.querySelector('#drop-zone')
         const dropZoneChildren = Array.from(dropZone.children);
         const dropTargetIndex = dropZoneChildren.findIndex((child) => {
@@ -29,13 +31,22 @@ const App = () => {
                 y <= rect.bottom
             );
         });
+        const dragStartIndex = dropZoneChildren.findIndex((child) => {
+            const rect = child.getBoundingClientRect();
+            return (
+                initialX >= rect.left &&
+                initialX <= rect.right &&
+                initialY >= rect.top &&
+                initialY <= rect.bottom
+            );
+        });
 
         if (
             dropTargetIndex !== -1 &&
             workBenchItems[dropTargetIndex] !== name
         ) {
-            mergeCats(workBenchItems[dropTargetIndex], name, dropTargetIndex);
-        } else {
+            mergeCats(workBenchItems[dropTargetIndex], name, dropTargetIndex, dragStartIndex);
+        } else if (dropTargetIndex === -1) {
             setWorkBenchItems((prevWorkBenchItems) => [
                 ...prevWorkBenchItems,
                 name,
@@ -47,9 +58,10 @@ const App = () => {
      * Attempts to merge two cats into one.
      * @param {string} catA
      * @param {string} catB
-     * @param {number} workBenchPosition
+     * @param {number} targetPosition
      */
-    const mergeCats = (catA, catB, workBenchPosition) => {
+    const mergeCats = (catA, catB, targetPosition, startPosition) => {
+        console.log(catA, catB, targetPosition);
         const comboKey = [catA, catB].sort().join(', ');
         const comboVal = combinations[comboKey];
         if (typeof comboVal === 'string') {
@@ -61,14 +73,10 @@ const App = () => {
             });
             setWorkBenchItems((prevWorkBenchItems) => {
                 const newWorkBenchItems = [...prevWorkBenchItems];
-                newWorkBenchItems[workBenchPosition] = comboVal;
+                newWorkBenchItems[targetPosition] = comboVal;
+                newWorkBenchItems.splice(startPosition, 1);
                 return newWorkBenchItems;
             });
-        } else {
-            setWorkBenchItems((prevWorkBenchItems) => [
-                ...prevWorkBenchItems,
-                catB,
-            ]);
         }
     };
 

@@ -7,6 +7,11 @@ export const Item = ({ name, isCatMenu = false }) => {
         const handleDragStart = (event) => {
             // Attach item name to dataTransfer for later identification.
             event.dataTransfer.setData('text/plain', name);
+            // Attach the item's x and y coordinates to the dataTransfer object.
+            const { clientX: x, clientY: y } = event;
+            if(isCatMenu) return;
+            event.dataTransfer.setData('initialX', x);
+            event.dataTransfer.setData('initialY', y);
         };
 
         // Listen to drag starts.

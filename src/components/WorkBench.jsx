@@ -8,11 +8,13 @@ export const WorkBench = ({ items, onItemDrop }) => {
     const handleDrop = (event) => {
         event.preventDefault();
         const name = event.dataTransfer.getData('text/plain');
+        const initialX = event.dataTransfer.getData('initialX');
+        const initialY = event.dataTransfer.getData('initialY');
         const { clientX: x, clientY: y } = event;
 
         // If there is a name associated with the drop then pass the relevant information to the app.
         if (name) {
-            onItemDrop({ name, x, y });
+            onItemDrop({ name, x, y, initialX, initialY });
         }
     };
 
