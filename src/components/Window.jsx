@@ -9,7 +9,7 @@ export const Window = ({ children, windowTitle, tabColor, bgColor }) => {
                 {windowTitle}
             </div>
             <div
-                className={`rounded-b-md ${bgColor ? bgColor : 'bg-gato-light-yellow'}`}
+                className={`rounded-b-md ${bgColor ? bgColor : 'bg-gato-yellow-1'}`}
             >
                 {children}
             </div>
