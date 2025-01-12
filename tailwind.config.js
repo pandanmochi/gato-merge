@@ -14,7 +14,8 @@ export default {
                 'gato-pink-2': '#FFB7E2',
             },
             boxShadow: {
-                gato: '-6px 6px 0px 0px #3275DA;',
+                'gato': '-6px 6px 0px 0px #3275DA;',
+                'gato-2': '-3px 3px 0px 0px #3275DA;',
             },
         },
         backgroundImage: {
