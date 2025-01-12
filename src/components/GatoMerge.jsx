@@ -4,7 +4,7 @@ import { useCatData } from '../hooks/useCatData';
 import { useState, useRef } from 'react';
 
 export const GatoMerge = () => {
-    const { initialCats, combinations } = useCatData();
+    const { initialCats, combinations, unlockable } = useCatData();
     const [unlockedCats, setUnlockedCats] = useState(initialCats);
     const [workBenchItems, setWorkBenchItems] = useState([]);
     const workBenchRef = useRef(null);
@@ -95,6 +95,9 @@ export const GatoMerge = () => {
         if (typeof comboVal === 'string') {
             setUnlockedCats((prevUnlockedCats) => {
                 if (!prevUnlockedCats.includes(comboVal)) {
+                    if (unlockable[comboVal]) {
+                        return [...prevUnlockedCats, comboVal, unlockable[comboVal]];
+                    }
                     return [...prevUnlockedCats, comboVal];
                 }
                 return prevUnlockedCats;
