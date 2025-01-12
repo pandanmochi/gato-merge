@@ -10,6 +10,23 @@ export const GatoMerge = () => {
     const workBenchRef = useRef(null);
 
     /**
+     * Checks if a point is inside the rectangle containing the element.
+     * @param {Element} element
+     * @param {number} x
+     * @param {number} y
+     * @returns {boolean}
+     */
+    const isInsideRect = (element, x, y) => {
+        const rect = element.getBoundingClientRect();
+        return (
+            x >= rect.left &&
+            x <= rect.right &&
+            y >= rect.top &&
+            y <= rect.bottom
+        );
+    };
+
+    /**
      * Handles the drop of an item over the work bench area.
      * @param {Object} eventData
      * @param {string} eventData.name
@@ -19,36 +36,23 @@ export const GatoMerge = () => {
      * @param {number?} eventData.initialY
      */
     const handleItemDrop = ({ name, x, y, initialX, initialY }) => {
-        const dropZone = document.querySelector('#drop-zone')
+        const dropZone = document.querySelector('#drop-zone');
+        const trashcan = document.querySelector('#trashcan');
+
         const dropZoneChildren = Array.from(dropZone.children);
+
+        // Find the index of the drop target
         const dropTargetIndex = dropZoneChildren.findIndex((child) => {
-            console.log(child);
-            const rect = child.getBoundingClientRect();
-            return (
-                x >= rect.left &&
-                x <= rect.right &&
-                y >= rect.top &&
-                y <= rect.bottom
-            );
-        });
-        const dragStartIndex = dropZoneChildren.findIndex((child) => {
-            const rect = child.getBoundingClientRect();
-            return (
-                initialX >= rect.left &&
-                initialX <= rect.right &&
-                initialY >= rect.top &&
-                initialY <= rect.bottom
-            );
+            return isInsideRect(child, x, y);
         });
 
-        const trashcan = document.querySelector('#trashcan');
-        const trashcanRect = trashcan.getBoundingClientRect();
-        if (
-            x >= trashcanRect.left &&
-            x <= trashcanRect.right &&
-            y >= trashcanRect.top &&
-            y <= trashcanRect.bottom
-        ) {
+        // Find the index of the item being dragged
+        const dragStartIndex = dropZoneChildren.findIndex((child) => {
+            return isInsideRect(child, initialX, initialY);
+        });
+
+        // If the item is dropped over the trashcan, remove it from the workbench.
+        if (isInsideRect(trashcan, x, y) && isInsideRect(dropZone, initialX, initialY)) {
             setWorkBenchItems((prevWorkBenchItems) => {
                 const newWorkBenchItems = [...prevWorkBenchItems];
                 newWorkBenchItems.splice(dragStartIndex, 1);
@@ -58,10 +62,14 @@ export const GatoMerge = () => {
         }
 
         if (
-            dropTargetIndex !== -1 &&
-            workBenchItems[dropTargetIndex] !== name
+            dropTargetIndex !== -1
         ) {
-            mergeCats(workBenchItems[dropTargetIndex], name, dropTargetIndex, dragStartIndex);
+            mergeCats(
+                workBenchItems[dropTargetIndex],
+                name,
+                dropTargetIndex,
+                dragStartIndex
+            );
         } else if (dropTargetIndex === -1) {
             setWorkBenchItems((prevWorkBenchItems) => [
                 ...prevWorkBenchItems,
@@ -97,8 +105,8 @@ export const GatoMerge = () => {
     };
 
     return (
-        <div className="font-mono text-gato-blue-3 flex w-screen min-h-screen flex-col bg-gato-blue-1">
-            <div className="flex h-full w-full p-6 gap-6">
+        <div className="flex min-h-screen w-screen flex-col bg-gato-blue-1 font-mono text-gato-blue-3">
+            <div className="flex h-full w-full gap-6 p-6">
                 <div ref={workBenchRef} className="w-3/4">
                     <WorkBench
                         items={workBenchItems}
