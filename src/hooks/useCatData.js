@@ -24,8 +24,15 @@ export const useCatData = () => {
         'milk-face, standing': 'full-of-soup',
     };
 
+    // Cats that are unlocked after a combination is made.
+    const unlockable = {
+        'happy': 'grumpy',
+
+    }
+
     return {
         initialCats,
         combinations,
+        unlockable
     };
 };
