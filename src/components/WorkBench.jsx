@@ -27,7 +27,7 @@ export const WorkBench = ({ items, onItemDrop }) => {
             <div className="h-[calc(100vh-100px)] p-7">
                 <div
                     id="drop-zone"
-                    className="bg-blue-checkerboard grid h-[95%] grid-flow-col grid-cols-5 grid-rows-4 items-center rounded-md border-2 border-gato-blue-2 bg-cover p-6 shadow-inner"
+                    className="relative grid h-[95%] grid-flow-col grid-cols-5 grid-rows-4 items-center rounded-md border-2 border-gato-blue-2 bg-blue-checkerboard bg-cover p-6 shadow-inner"
                     onDrop={handleDrop}
                     onDragOver={(e) => e.preventDefault()}
                 >
@@ -38,6 +38,11 @@ export const WorkBench = ({ items, onItemDrop }) => {
                             name={item}
                         />
                     ))}
+                    <img
+                        id="trashcan"
+                        src="/src/assets/images/icons/trash-icon.svg"
+                        className="absolute bottom-4 right-4 h-12 w-12"
+                    />
                 </div>
                 <div className="">hello</div>
             </div>
