@@ -52,7 +52,10 @@ export const GatoMerge = () => {
         });
 
         // If the item is dropped over the trashcan, remove it from the workbench.
-        if (isInsideRect(trashcan, x, y) && isInsideRect(dropZone, initialX, initialY)) {
+        if (
+            isInsideRect(trashcan, x, y) &&
+            isInsideRect(dropZone, initialX, initialY)
+        ) {
             setWorkBenchItems((prevWorkBenchItems) => {
                 const newWorkBenchItems = [...prevWorkBenchItems];
                 newWorkBenchItems.splice(dragStartIndex, 1);
@@ -61,16 +64,17 @@ export const GatoMerge = () => {
             return;
         }
 
-        if (
-            dropTargetIndex !== -1
-        ) {
+        if (dropTargetIndex !== -1) {
             mergeCats(
                 workBenchItems[dropTargetIndex],
                 name,
                 dropTargetIndex,
                 dragStartIndex
             );
-        } else if (dropTargetIndex === -1) {
+        } else if (
+            dropTargetIndex === -1 &&
+            !isInsideRect(dropZone, initialX, initialY)
+        ) {
             setWorkBenchItems((prevWorkBenchItems) => [
                 ...prevWorkBenchItems,
                 name,
