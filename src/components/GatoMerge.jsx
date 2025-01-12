@@ -2,10 +2,13 @@ import { CatMenu } from './CatMenu';
 import { WorkBench } from './WorkBench';
 import { useCatData } from '../hooks/useCatData';
 import { useState, useRef } from 'react';
+import { NewCatWindow } from './NewCatWindow';
 
 export const GatoMerge = () => {
     const { initialCats, combinations, unlockable } = useCatData();
     const [unlockedCats, setUnlockedCats] = useState(initialCats);
+    const [newCatName, setNewCatName] = useState('');
+    const [showNewCatWindow, setShowNewCatWindow] = useState(false);
     const [workBenchItems, setWorkBenchItems] = useState([]);
     const workBenchRef = useRef(null);
 
@@ -96,7 +99,11 @@ export const GatoMerge = () => {
             setUnlockedCats((prevUnlockedCats) => {
                 if (!prevUnlockedCats.includes(comboVal)) {
                     if (unlockable[comboVal]) {
-                        return [...prevUnlockedCats, comboVal, unlockable[comboVal]];
+                        return [
+                            ...prevUnlockedCats,
+                            comboVal,
+                            unlockable[comboVal],
+                        ];
                     }
                     return [...prevUnlockedCats, comboVal];
                 }
@@ -108,7 +115,18 @@ export const GatoMerge = () => {
                 newWorkBenchItems.splice(startPosition, 1);
                 return newWorkBenchItems;
             });
+            setNewCatName(comboVal);
+            setShowNewCatWindow(true);
+            console.log(showNewCatWindow);
         }
+    };
+
+    /**
+     * Closes the new cat window.
+     * @returns {void}
+     * */
+    const closeNewCatWindow = () => {
+        setShowNewCatWindow(false);
     };
 
     return (
@@ -123,6 +141,9 @@ export const GatoMerge = () => {
                 <div className="w-1/4">
                     <CatMenu selectableCats={unlockedCats} />
                 </div>
+                {showNewCatWindow && (
+                    <NewCatWindow onClose={closeNewCatWindow} />
+                )}
             </div>
         </div>
     );
