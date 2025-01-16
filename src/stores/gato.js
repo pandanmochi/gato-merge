@@ -33,20 +33,20 @@ export const useGatoStore = create((set, get) => {
 
     addToMenu: (name) => {
       const { menu, presents } = get();
-      if(unlockable[name]) {
+      if (unlockable[name]) {
         set({ presents: [...presents, unlockable[name]] });
-        set({ menu: [...menu, name, 'present']})
+        set({ menu: [...menu, name, 'present'] });
       } else {
-        set({ menu: [...menu, name]})
+        set({ menu: [...menu, name] });
       }
     },
 
     removeFromMenu: (index) => {
-      const {menu} = get();
-      const newMenu = [...menu]
-      if(newMenu[index]) {
-        newMenu.splice(index, 1)
-        set({ menu: newMenu })
+      const { menu } = get();
+      const newMenu = [...menu];
+      if (newMenu[index]) {
+        newMenu.splice(index, 1);
+        set({ menu: newMenu });
       }
     },
 
@@ -60,9 +60,9 @@ export const useGatoStore = create((set, get) => {
 
     getPresentToOpen: () => {
       const { presents } = get();
-      const newPresents = [...presents]
+      const newPresents = [...presents];
       const cat = newPresents.shift();
-      set({ presents: newPresents })
+      set({ presents: newPresents });
       return cat;
     },
   };

@@ -1,9 +1,7 @@
 import { GatoMerge } from './components/GatoMerge';
 
 const App = () => {
-    return (
-        <GatoMerge/>
-    );
+  return <GatoMerge />;
 };
 
 export default App;
