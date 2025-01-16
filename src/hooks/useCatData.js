@@ -10,7 +10,7 @@ export const useCatData = () => {
     'el-gato, maxwell': 'spoingus',
     'el-gato, hehe': 'happy',
     'el-gato, grumpy': 'sus',
-    'huh, maxwell': 'dissociated',
+    'huh, maxwell': 'dissociating',
     'hehe, maxwell': 'melvin',
     'spoingus, sus': 'vibing',
     'banana, crying': 'banana-crying',
