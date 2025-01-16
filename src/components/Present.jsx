@@ -15,12 +15,14 @@ export const Present = ({ index }) => {
 
     return (
         <div onClick={handleClick} className="flex h-32 flex-row items-center space-x-3">
+            <div className='h-28 w-28 p-3'>
             <img
-                src={`/src/assets/images/cats/herbert.png`}
-                className="h-28 w-28 object-contain"
+                src={`/src/assets/images/gift.png`}
+                className="object-contain"
                 alt='present'
                 ref={itemRef}
             />
+            </div>
             <span className="text-center"/> open me!
         </div>
     );
