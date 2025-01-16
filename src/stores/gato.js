@@ -5,7 +5,7 @@ export const useGatoStore = create((set, get) => {
   const { initialCats, combinations, unlockable } = useCatData();
 
   return {
-    unlockedCats: initialCats,
+    menu: initialCats,
     newCatName: '',
     presents: [],
     showNewCatWindow: false,
@@ -13,7 +13,7 @@ export const useGatoStore = create((set, get) => {
     combinations,
     unlockable,
 
-    setUnlockedCats: (cats) => set({ unlockedCats: cats }),
+    setMenu: (cats) => set({ menu: cats }),
     setNewCatName: (name) => set({ newCatName: name }),
     setPresents: (presents) => set({ presents }),
     setShowNewCatWindow: (show) => set({ showNewCatWindow: show }),
@@ -31,13 +31,13 @@ export const useGatoStore = create((set, get) => {
       set({ workBenchItems: newWorkBenchItems });
     },
 
-    addUnlockedCat: (name) => {
-      const { unlockedCats, presents } = get();
+    addToMenu: (name) => {
+      const { menu, presents } = get();
       if(unlockable[name]) {
         set({ presents: [...presents, unlockable[name]] });
-        set({ unlockedCats: [...unlockedCats, name, unlockable[name]]})
+        set({ menu: [...menu, name, 'present']})
       } else {
-        set({ unlockedCats: [...unlockedCats, name]})
+        set({ menu: [...menu, name]})
       }
     },
 
@@ -50,9 +50,10 @@ export const useGatoStore = create((set, get) => {
     },
 
     getPresentToOpen: () => {
-      let { presents } = get();
-      const cat = presents.shift();
-      set({ presents: presents })
+      const { presents } = get();
+      const newPresents = [...presents]
+      const cat = newPresents.shift();
+      set({ presents: newPresents })
       return cat;
     },
   };

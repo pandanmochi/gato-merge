@@ -14,8 +14,8 @@ export const GatoMerge = () => {
         setNewCatName,
         showNewCatWindow,
         setShowNewCatWindow,
-        unlockedCats,
-        addUnlockedCat,
+        menu,
+        addToMenu,
         presents,
         combinations
     } = useGatoStore();
@@ -100,7 +100,7 @@ export const GatoMerge = () => {
         const comboVal = combinations[comboKey];
         
         if (typeof comboVal === 'string') {
-            if (!unlockedCats.includes(comboVal)) addUnlockedCat(comboVal);
+            if (!menu.includes(comboVal)) addToMenu(comboVal);
             mergeItems(startPosition, targetPosition, comboVal);
             setNewCatName(comboVal);
             setShowNewCatWindow(true);
@@ -126,7 +126,7 @@ export const GatoMerge = () => {
                 </div>
                 <div className="w-1/4">
                     <CatMenu
-                        selectableCats={unlockedCats}
+                        selectableCats={menu}
                         presents={presents}
                     />
                 </div>
