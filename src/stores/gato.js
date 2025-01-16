@@ -41,6 +41,15 @@ export const useGatoStore = create((set, get) => {
       }
     },
 
+    removeFromMenu: (index) => {
+      const {menu} = get();
+      const newMenu = [...menu]
+      if(newMenu[index]) {
+        newMenu.splice(index, 1)
+        set({ menu: newMenu })
+      }
+    },
+
     mergeItems: (startPosition, targetPosition, newCat) => {
       const { workBenchItems } = get();
       const newWorkBenchItems = [...workBenchItems];
