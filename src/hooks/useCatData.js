@@ -29,7 +29,7 @@ export const useCatData = () => {
   // Cats that are unlocked after a combination is made.
   const unlockable = {
     happy: 'grumpy',
-    apple: 'banana',
+    'apple-cat': 'banana',
     melvin: 'olli',
     smudge: 'nyan',
     smurf: 'bop',
