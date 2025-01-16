@@ -7,6 +7,7 @@ export default {
         'gato-blue-1': '#EEFEFF',
         'gato-blue-2': '#3275DA',
         'gato-blue-3': '#12305E',
+        'gato-blue-4': '#8ad4ff',
         'gato-yellow-1': '#FFFEF1',
         'gato-yellow-2': '#FFF2A7',
         'gato-violet': '#B7BDFF',
