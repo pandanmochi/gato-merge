@@ -1,15 +1,25 @@
 import { CatMenu } from './CatMenu';
 import { WorkBench } from './WorkBench';
-import { useCatData } from '../hooks/useCatData';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { NewCatWindow } from './NewCatWindow';
+import { useGatoStore } from '../stores/gato';
 
 export const GatoMerge = () => {
-    const { initialCats, combinations, unlockable } = useCatData();
-    const [unlockedCats, setUnlockedCats] = useState(initialCats);
-    const [newCatName, setNewCatName] = useState('');
-    const [showNewCatWindow, setShowNewCatWindow] = useState(false);
-    const [workBenchItems, setWorkBenchItems] = useState([]);
+    const {
+        workBenchItems,
+        addToWorkbenchItems,
+        removeWorkBenchItem,
+        mergeItems,
+        newCatName,
+        setNewCatName,
+        showNewCatWindow,
+        setShowNewCatWindow,
+        unlockedCats,
+        addUnlockedCat,
+        presents,
+        combinations
+    } = useGatoStore();
+
     const workBenchRef = useRef(null);
 
     /**
@@ -59,11 +69,7 @@ export const GatoMerge = () => {
             isInsideRect(trashcan, x, y) &&
             isInsideRect(dropZone, initialX, initialY)
         ) {
-            setWorkBenchItems((prevWorkBenchItems) => {
-                const newWorkBenchItems = [...prevWorkBenchItems];
-                newWorkBenchItems.splice(dragStartIndex, 1);
-                return newWorkBenchItems;
-            });
+            removeWorkBenchItem(dragStartIndex);
             return;
         }
 
@@ -78,10 +84,7 @@ export const GatoMerge = () => {
             dropTargetIndex === -1 &&
             !isInsideRect(dropZone, initialX, initialY)
         ) {
-            setWorkBenchItems((prevWorkBenchItems) => [
-                ...prevWorkBenchItems,
-                name,
-            ]);
+            addToWorkbenchItems(name);
         }
     };
 
@@ -95,29 +98,12 @@ export const GatoMerge = () => {
         console.log(catA, catB, targetPosition);
         const comboKey = [catA, catB].sort().join(', ');
         const comboVal = combinations[comboKey];
+        
         if (typeof comboVal === 'string') {
-            setUnlockedCats((prevUnlockedCats) => {
-                if (!prevUnlockedCats.includes(comboVal)) {
-                    if (unlockable[comboVal]) {
-                        return [
-                            ...prevUnlockedCats,
-                            comboVal,
-                            unlockable[comboVal],
-                        ];
-                    }
-                    return [...prevUnlockedCats, comboVal];
-                }
-                return prevUnlockedCats;
-            });
-            setWorkBenchItems((prevWorkBenchItems) => {
-                const newWorkBenchItems = [...prevWorkBenchItems];
-                newWorkBenchItems[targetPosition] = comboVal;
-                newWorkBenchItems.splice(startPosition, 1);
-                return newWorkBenchItems;
-            });
+            if (!unlockedCats.includes(comboVal)) addUnlockedCat(comboVal);
+            mergeItems(startPosition, targetPosition, comboVal);
             setNewCatName(comboVal);
             setShowNewCatWindow(true);
-            console.log(showNewCatWindow);
         }
     };
 
@@ -139,10 +125,16 @@ export const GatoMerge = () => {
                     />
                 </div>
                 <div className="w-1/4">
-                    <CatMenu selectableCats={unlockedCats} />
+                    <CatMenu
+                        selectableCats={unlockedCats}
+                        presents={presents}
+                    />
                 </div>
                 {showNewCatWindow && (
-                    <NewCatWindow onClose={closeNewCatWindow} />
+                    <NewCatWindow
+                        name={newCatName}
+                        onClose={closeNewCatWindow}
+                    />
                 )}
             </div>
         </div>
