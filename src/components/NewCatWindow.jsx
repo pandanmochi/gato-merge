@@ -11,10 +11,10 @@ export const NewCatWindow = ({ name, onClose }) => {
             >
                 <div className="px-12 py-10">
                     <div className="text-center text-xl font-medium">
-                        maxwell
+                        {name}
                     </div>
                     <img
-                        src="src/assets/images/cats/maxwell.png"
+                        src={`src/assets/images/cats/${name}.png`}
                         className="h-80 w-80 object-contain"
                     />
                     <div className="text-center">He is very sneaky</div>
