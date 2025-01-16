@@ -6,10 +6,12 @@ export const useGatoStore = create((set, get) => {
 
   return {
     menu: initialCats,
-    newCatName: '',
-    presents: [],
-    showNewCatWindow: false,
     workBenchItems: [],
+    presents: [],
+    newCatName: '',
+    showNewCatWindow: false,
+    retiredCat: '',
+    showRetiredwindow: false,
     combinations,
     unlockable,
 
@@ -17,6 +19,7 @@ export const useGatoStore = create((set, get) => {
     setNewCatName: (name) => set({ newCatName: name }),
     setPresents: (presents) => set({ presents }),
     setShowNewCatWindow: (show) => set({ showNewCatWindow: show }),
+    setShowRetiredWindow: (show) => set({ showRetiredwindow: show }),
     setWorkBenchItems: (items) => set({ workBenchItems: items }),
 
     addToWorkbenchItems: (name) => {

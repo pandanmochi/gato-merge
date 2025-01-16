@@ -3,6 +3,7 @@ import { WorkBench } from './WorkBench';
 import { useRef } from 'react';
 import { NewCatWindow } from './NewCatWindow';
 import { useGatoStore } from '../stores/gato';
+import { RetireWindow } from './RetireWindow';
 
 export const GatoMerge = () => {
   const {
@@ -14,6 +15,9 @@ export const GatoMerge = () => {
     setNewCatName,
     showNewCatWindow,
     setShowNewCatWindow,
+    retiredCat,
+    showRetiredWindow,
+    setShowRetiredWindow,
     menu,
     addToMenu,
     presents,
@@ -112,6 +116,14 @@ export const GatoMerge = () => {
     setShowNewCatWindow(false);
   };
 
+  /**
+   * Closes the new cat window.
+   * @returns {void}
+   * */
+  const closeRetiredWindow = () => {
+    setShowRetiredWindow(false);
+  };
+
   return (
     <div className="flex min-h-screen w-screen flex-col bg-gato-blue-1 font-mono text-gato-blue-3">
       <div className="flex h-full w-full gap-6 p-6">
@@ -123,6 +135,9 @@ export const GatoMerge = () => {
         </div>
         {showNewCatWindow && (
           <NewCatWindow name={newCatName} onClose={closeNewCatWindow} />
+        )}
+        {showRetiredWindow && (
+          <RetireWindow name={retiredCat} onClose={closeRetiredWindow} />
         )}
       </div>
     </div>
