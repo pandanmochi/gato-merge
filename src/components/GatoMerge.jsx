@@ -101,10 +101,12 @@ export const GatoMerge = () => {
     const comboVal = combinations[comboKey];
 
     if (typeof comboVal === 'string') {
-      if (!menu.includes(comboVal)) addToMenu(comboVal);
+      if (!menu.includes(comboVal)) {
+        addToMenu(comboVal);
+        setNewCatName(comboVal);
+        setShowNewCatWindow(true);
+      }
       mergeItems(startPosition, targetPosition, comboVal);
-      setNewCatName(comboVal);
-      setShowNewCatWindow(true);
     }
   };
 
