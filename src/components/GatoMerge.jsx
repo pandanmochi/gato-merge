@@ -18,8 +18,12 @@ export const GatoMerge = () => {
     retiredCat,
     showRetiredWindow,
     setShowRetiredWindow,
+    setRetiredCatName,
+    hasChildrenLeft,
     menu,
     addToMenu,
+    removeFromMenu,
+    addToUnlockedCats,
     presents,
     combinations,
   } = useGatoStore();
@@ -103,8 +107,23 @@ export const GatoMerge = () => {
     if (typeof comboVal === 'string') {
       if (!menu.includes(comboVal)) {
         addToMenu(comboVal);
+        addToUnlockedCats(comboVal);
         setNewCatName(comboVal);
         setShowNewCatWindow(true);
+
+        if (!hasChildrenLeft(catA)) {
+          setRetiredCatName(catA);
+          setShowRetiredWindow(true);
+          const index = menu.indexOf(catA);
+          removeFromMenu(index);
+        }
+
+        if (!hasChildrenLeft(catB)) {
+          setRetiredCatName(catB);
+          setShowRetiredWindow(true);
+          const index = menu.indexOf(catB);
+          removeFromMenu(index);
+        }
       }
       mergeItems(startPosition, targetPosition, comboVal);
     }
@@ -119,7 +138,7 @@ export const GatoMerge = () => {
   };
 
   /**
-   * Closes the new cat window.
+   * Closes the retired cat window.
    * @returns {void}
    * */
   const closeRetiredWindow = () => {

@@ -3,7 +3,7 @@ import { Window } from './Window';
 
 export const NewCatWindow = ({ name, onClose }) => {
   return (
-    <div className="absolute flex h-4/5 w-full items-center justify-center">
+    <div className="absolute z-30 flex h-4/5 w-full items-center justify-center">
       <Window
         windowTitle="new cat!"
         tabColor="bg-gato-yellow-2"

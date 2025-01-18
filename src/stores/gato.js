@@ -5,21 +5,23 @@ export const useGatoStore = create((set, get) => {
   const { initialCats, combinations, unlockable } = useCatData();
 
   return {
+    unlockedCats: initialCats,
     menu: initialCats,
     workBenchItems: [],
     presents: [],
     newCatName: '',
     showNewCatWindow: false,
     retiredCat: '',
-    showRetiredwindow: false,
+    showRetiredWindow: false,
     combinations,
     unlockable,
 
     setMenu: (cats) => set({ menu: cats }),
     setNewCatName: (name) => set({ newCatName: name }),
+    setRetiredCatName: (name) => set({ retiredCat: name }),
     setPresents: (presents) => set({ presents }),
     setShowNewCatWindow: (show) => set({ showNewCatWindow: show }),
-    setShowRetiredWindow: (show) => set({ showRetiredwindow: show }),
+    setShowRetiredWindow: (show) => set({ showRetiredWindow: show }),
     setWorkBenchItems: (items) => set({ workBenchItems: items }),
 
     addToWorkbenchItems: (name) => {
@@ -32,6 +34,11 @@ export const useGatoStore = create((set, get) => {
       const newWorkBenchItems = [...workBenchItems];
       newWorkBenchItems.splice(index, 1);
       set({ workBenchItems: newWorkBenchItems });
+    },
+
+    addToUnlockedCats: (name) => {
+      const { unlockedCats } = get();
+      set({ unlockedCats: [...unlockedCats, name] });
     },
 
     addToMenu: (name) => {
@@ -59,6 +66,16 @@ export const useGatoStore = create((set, get) => {
       newWorkBenchItems[targetPosition] = newCat;
       newWorkBenchItems.splice(startPosition, 1);
       set({ workBenchItems: newWorkBenchItems });
+    },
+
+    hasChildrenLeft: (name) => {
+      const { unlockedCats } = get();
+      for (const key in combinations) {
+        if (key.includes(name) && !unlockedCats.includes(combinations[key])) {
+          return true;
+        }
+      }
+      return false;
     },
 
     getPresentToOpen: () => {

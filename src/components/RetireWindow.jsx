@@ -3,7 +3,7 @@ import { Window } from './Window';
 
 export const RetireWindow = ({ name, onClose }) => {
   return (
-    <div className="absolute bottom-12 right-12 flex h-4/5 w-full items-end justify-end">
+    <div className="absolute bottom-12 right-12 z-20 flex h-4/5 w-full items-end justify-end">
       <Window
         windowTitle="retirement-notice"
         tabColor="bg-gato-blue-4"
@@ -13,7 +13,7 @@ export const RetireWindow = ({ name, onClose }) => {
           <div className="text-center text-xl font-medium">{name}</div>
           <img
             src={`src/assets/images/cats/${name}.png`}
-            className="h-40 w-40 object-contain"
+            className="h-32 w-32 object-contain"
           />
           <div className="text-center">retired</div>
           <div className="h-20 w-full text-center">
