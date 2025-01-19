@@ -9,7 +9,7 @@ export const NewCatWindow = ({ name, onClose, isFinal }) => {
         tabColor="bg-gato-yellow-2"
         bgColor="bg-gato-yellow-1"
       >
-        <div className="px-12 py-10">
+        <div className="flex flex-col items-center px-12 py-10">
           <div className="text-center text-xl font-medium">{name}</div>
           <img
             src={`src/assets/images/cats/${name}.png`}
