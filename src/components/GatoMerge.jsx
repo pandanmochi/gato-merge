@@ -18,10 +18,14 @@ export const GatoMerge = () => {
     setNewCatName,
     showNewCatWindow,
     setShowNewCatWindow,
-    retiredCat,
-    showRetiredWindow,
-    setShowRetiredWindow,
-    setRetiredCatName,
+    retiredCatA,
+    retiredCatB,
+    setRetiredCatA,
+    setRetiredCatB,
+    showRetiredWindowA,
+    showRetiredWindowB,
+    setShowRetiredWindowA,
+    setShowRetiredWindowB,
     hasChildrenLeft,
     menu,
     addToMenu,
@@ -125,16 +129,16 @@ export const GatoMerge = () => {
         setShowNewCatWindow(true);
 
         if (!hasChildrenLeft(catA)) {
-          setRetiredCatName(catA);
-          setShowRetiredWindow(true);
+          setRetiredCatA(catA);
+          setShowRetiredWindowA(true);
           removeNameFromMenu(catA);
           removeNameFromWorkBench(catA);
           console.log(`${catA} has no children left`);
         }
 
         if (!hasChildrenLeft(catB)) {
-          setRetiredCatName(catB);
-          setShowRetiredWindow(true);
+          setRetiredCatB(catB);
+          setShowRetiredWindowB(true);
           removeNameFromMenu(catB);
           removeNameFromWorkBench(catB);
           console.log(`${catB} has no children left`);
@@ -155,8 +159,16 @@ export const GatoMerge = () => {
    * Closes the retired cat window.
    * @returns {void}
    * */
-  const closeRetiredWindow = () => {
-    setShowRetiredWindow(false);
+  const closeRetiredWindowA = () => {
+    setShowRetiredWindowA(false);
+  };
+
+  /**
+   * Closes the retired cat window.
+   * @returns {void}
+   * */
+  const closeRetiredWindowB = () => {
+    setShowRetiredWindowB(false);
   };
 
   return (
@@ -175,8 +187,11 @@ export const GatoMerge = () => {
             isFinal={newCatIsFinal}
           />
         )}
-        {showRetiredWindow && (
-          <RetireWindow name={retiredCat} onClose={closeRetiredWindow} />
+        {showRetiredWindowA && (
+          <RetireWindow name={retiredCatA} onClose={closeRetiredWindowA} />
+        )}
+        {showRetiredWindowB && (
+          <RetireWindow name={retiredCatB} onClose={closeRetiredWindowB} />
         )}
       </div>
     </div>
