@@ -7,15 +7,17 @@ export const Present = ({ index }) => {
     getPresentToOpen,
     addToMenu,
     setNewCatName,
-    removeFromMenu,
+    removeMenuItem,
+    setNewCatIsFinal,
   } = useGatoStore();
   const itemRef = useRef(null);
 
   const handleClick = () => {
     const newCat = getPresentToOpen();
-    removeFromMenu(index);
+    removeMenuItem(index);
     addToMenu(newCat);
     setNewCatName(newCat);
+    setNewCatIsFinal(false);
     setShowNewCatWindow(true);
   };
 

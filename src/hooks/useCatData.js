@@ -35,6 +35,24 @@ export const useCatData = () => {
     smurf: 'bop',
   };
 
+  const getFinalCats = () => {
+    const catChildren = new Set(Object.values(combinations));
+    const allCats = new Set();
+
+    for (const key of Object.keys(combinations)) {
+      const cats = key.split(', ');
+      cats.forEach((cat) => allCats.add(cat));
+    }
+
+    const catsWithNoChildren = [...catChildren].filter(
+      (cat) => !allCats.has(cat)
+    );
+
+    return catsWithNoChildren;
+  };
+
+  const finalCats = getFinalCats();
+
   // const catText = {
   //     'el-gato': 'standing',
   //     'standing': '',
@@ -61,5 +79,6 @@ export const useCatData = () => {
     initialCats,
     combinations,
     unlockable,
+    finalCats,
   };
 };

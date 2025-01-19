@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Window } from './Window';
 
-export const NewCatWindow = ({ name, onClose }) => {
+export const NewCatWindow = ({ name, onClose, isFinal }) => {
   return (
     <div className="absolute z-30 flex h-4/5 w-full items-center justify-center">
       <Window
@@ -16,6 +16,9 @@ export const NewCatWindow = ({ name, onClose }) => {
             className="h-80 w-80 object-contain"
           />
           <div className="text-center">He is very sneaky</div>
+          {isFinal && (
+            <div className="text-center">{`${name} has no children and is a final cat!`}</div>
+          )}
           <div className="h-20 w-full text-center">
             <button
               onClick={onClose}

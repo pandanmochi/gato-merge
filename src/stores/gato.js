@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { useCatData } from '../hooks/useCatData';
 
 export const useGatoStore = create((set, get) => {
-  const { initialCats, combinations, unlockable } = useCatData();
+  const { initialCats, combinations, unlockable, finalCats } = useCatData();
 
   return {
     unlockedCats: initialCats,
@@ -10,19 +10,19 @@ export const useGatoStore = create((set, get) => {
     workBenchItems: [],
     presents: [],
     newCatName: '',
+    newCatIsFinal: false,
     showNewCatWindow: false,
     retiredCat: '',
     showRetiredWindow: false,
     combinations,
     unlockable,
+    finalCats,
 
-    setMenu: (cats) => set({ menu: cats }),
     setNewCatName: (name) => set({ newCatName: name }),
     setRetiredCatName: (name) => set({ retiredCat: name }),
-    setPresents: (presents) => set({ presents }),
+    setNewCatIsFinal: (isFinal) => set({ newCatIsFinal: isFinal }),
     setShowNewCatWindow: (show) => set({ showNewCatWindow: show }),
     setShowRetiredWindow: (show) => set({ showRetiredWindow: show }),
-    setWorkBenchItems: (items) => set({ workBenchItems: items }),
 
     addToWorkbenchItems: (name) => {
       const { workBenchItems } = get();
@@ -36,28 +36,42 @@ export const useGatoStore = create((set, get) => {
       set({ workBenchItems: newWorkBenchItems });
     },
 
-    addToUnlockedCats: (name) => {
-      const { unlockedCats } = get();
-      set({ unlockedCats: [...unlockedCats, name] });
+    removeNameFromWorkBench: (name) => {
+      const { workBenchItems } = get();
+      const newWorkBenchItems = workBenchItems.filter((cat) => cat !== name);
+      set({ workBenchItems: newWorkBenchItems });
     },
 
-    addToMenu: (name) => {
-      const { menu, presents } = get();
+    addToUnlockedCats: (name) => {
+      const { unlockedCats, presents, menu } = get();
+      set({ unlockedCats: [...unlockedCats, name] });
       if (unlockable[name]) {
         set({ presents: [...presents, unlockable[name]] });
-        set({ menu: [...menu, name, 'present'] });
-      } else {
-        set({ menu: [...menu, name] });
+        set({ menu: [...menu, 'present'] });
       }
     },
 
-    removeFromMenu: (index) => {
+    addToMenu: (name) => {
+      const { menu } = get();
+      console.log(name);
+      console.log(unlockable[name]);
+      set({ menu: [...menu, name] });
+    },
+
+    removeMenuItem: (index) => {
       const { menu } = get();
       const newMenu = [...menu];
       if (newMenu[index]) {
         newMenu.splice(index, 1);
         set({ menu: newMenu });
       }
+    },
+
+    removeNameFromMenu: (name) => {
+      const { menu } = get();
+      console.log(menu);
+      const newMenu = menu.filter((cat) => cat !== name);
+      set({ menu: newMenu });
     },
 
     mergeItems: (startPosition, targetPosition, newCat) => {
@@ -71,6 +85,7 @@ export const useGatoStore = create((set, get) => {
     hasChildrenLeft: (name) => {
       const { unlockedCats } = get();
       for (const key in combinations) {
+        console.log(`includes key ${name}: ${key.includes(name)}`);
         if (key.includes(name) && !unlockedCats.includes(combinations[key])) {
           return true;
         }

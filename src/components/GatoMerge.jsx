@@ -10,8 +10,11 @@ export const GatoMerge = () => {
     workBenchItems,
     addToWorkbenchItems,
     removeWorkBenchItem,
+    removeNameFromWorkBench,
     mergeItems,
     newCatName,
+    newCatIsFinal,
+    setNewCatIsFinal,
     setNewCatName,
     showNewCatWindow,
     setShowNewCatWindow,
@@ -22,10 +25,11 @@ export const GatoMerge = () => {
     hasChildrenLeft,
     menu,
     addToMenu,
-    removeFromMenu,
+    removeNameFromMenu,
     addToUnlockedCats,
     presents,
     combinations,
+    finalCats,
   } = useGatoStore();
 
   const workBenchRef = useRef(null);
@@ -105,8 +109,17 @@ export const GatoMerge = () => {
     const comboVal = combinations[comboKey];
 
     if (typeof comboVal === 'string') {
+      mergeItems(startPosition, targetPosition, comboVal);
+
       if (!menu.includes(comboVal)) {
-        addToMenu(comboVal);
+        if (!finalCats.includes(comboVal)) {
+          addToMenu(comboVal);
+          setNewCatIsFinal(false);
+          console.log(newCatIsFinal);
+        } else {
+          setNewCatIsFinal(true);
+          removeNameFromWorkBench(comboVal);
+        }
         addToUnlockedCats(comboVal);
         setNewCatName(comboVal);
         setShowNewCatWindow(true);
@@ -114,18 +127,19 @@ export const GatoMerge = () => {
         if (!hasChildrenLeft(catA)) {
           setRetiredCatName(catA);
           setShowRetiredWindow(true);
-          const index = menu.indexOf(catA);
-          removeFromMenu(index);
+          removeNameFromMenu(catA);
+          removeNameFromWorkBench(catA);
+          console.log(`${catA} has no children left`);
         }
 
         if (!hasChildrenLeft(catB)) {
           setRetiredCatName(catB);
           setShowRetiredWindow(true);
-          const index = menu.indexOf(catB);
-          removeFromMenu(index);
+          removeNameFromMenu(catB);
+          removeNameFromWorkBench(catB);
+          console.log(`${catB} has no children left`);
         }
       }
-      mergeItems(startPosition, targetPosition, comboVal);
     }
   };
 
@@ -155,7 +169,11 @@ export const GatoMerge = () => {
           <CatMenu selectableCats={menu} presents={presents} />
         </div>
         {showNewCatWindow && (
-          <NewCatWindow name={newCatName} onClose={closeNewCatWindow} />
+          <NewCatWindow
+            name={newCatName}
+            onClose={closeNewCatWindow}
+            isFinal={newCatIsFinal}
+          />
         )}
         {showRetiredWindow && (
           <RetireWindow name={retiredCat} onClose={closeRetiredWindow} />
