@@ -3,7 +3,7 @@ import { Window } from './Window';
 
 export const RetireWindow = ({ name, onClose }) => {
   return (
-    <div className="absolute bottom-12 right-12 z-20 flex h-4/5 w-full items-end justify-end">
+    <div className="absolute bottom-12 right-12 z-20 flex w-full items-end justify-end">
       <Window
         windowTitle="retirement-notice"
         tabColor="bg-gato-blue-4"
