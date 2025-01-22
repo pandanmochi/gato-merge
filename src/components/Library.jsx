@@ -33,9 +33,9 @@ export const Library = ({ onClose, unlockedCats }) => {
         closeButton={true}
         onClose={onClose}
       >
-        <div className="">
+        <div className="h-full">
           {showSelection && (
-            <div className="grid grid-cols-4 items-center gap-10 px-12 py-10">
+            <div className="grid h-5/6 grid-cols-4 items-center gap-10 overflow-scroll px-12 py-10">
               {unlockedCats.map((cat, index) => {
                 return (
                   <Item

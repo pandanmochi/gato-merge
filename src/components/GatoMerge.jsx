@@ -193,7 +193,7 @@ export const GatoMerge = () => {
   };
 
   return (
-    <div className="flex min-h-screen w-screen flex-col bg-gato-blue-1 font-mono text-gato-blue-3">
+    <div className="flex min-h-screen w-screen flex-col overflow-hidden bg-gato-blue-1 font-mono text-gato-blue-3">
       <div className="flex h-full w-full gap-6 p-6">
         <div ref={workBenchRef} className="w-3/4">
           <WorkBench

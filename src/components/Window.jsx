@@ -23,7 +23,7 @@ export const Window = ({
           />
         )}
       </div>
-      <div className={`rounded-b-md`}>{children}</div>
+      <div className={`h-full rounded-b-md`}>{children}</div>
     </div>
   );
 };

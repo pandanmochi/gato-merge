@@ -18,7 +18,7 @@ export const About = ({ name, onGoBack }) => {
         className="my-8 h-48 w-48 object-contain"
       />
       {hasAboutData && (
-        <div className="">
+        <div className="h-52 overflow-scroll">
           <h2 className="mb-2 font-bold">About</h2>
           <p className="text-sm">
             &quot;{about[name]['text']}&quot; [KnowYourMeme, Jan 2025](
