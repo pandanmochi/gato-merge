@@ -53,27 +53,33 @@ export const useCatData = () => {
 
   const finalCats = getFinalCats();
 
-  // const catText = {
-  //     'el-gato': 'standing',
-  //     'standing': '',
-  //     'maxwell': 'spoingus',
-  //     'hehe': 'happy',
-  //     'grumpy': 'sus',
-  //     'huh': 'dissociated',
-  //     'melvin': 'melvin',
-  //     'spoingus': 'vibing',
-  //     'banana': 'banana-crying',
-  //     'crying': 'crying-thumbs',
-  //     'sus': 'huh',
-  //     'vibing': 'apple',
-  //     'apple': 'apple-cat',
-  //     'bop': 'biting',
-  //     'olli': 'super-crying',
-  //     'nyan': 'smurf',
-  //     'smurf': '',
-  //     'milk-face': 'full-of-soup',
-  //     'full-of-soup': ''
-  // }
+  const catText = {
+    'crying-thumbs':
+      "They ask you how you are and you just have to say that you're fine when you're not really fine but you just can't get into it because they will never understand.",
+    'el-gato': 'Die Katze.',
+    standing: 'He committed several crimes.',
+    maxwell: 'He looks well educated.',
+    hehe: 'He is very sneaky',
+    grumpy: 'Back to 2012.',
+    huh: 'huh?',
+    melvin: 'His name is Melvin.',
+    spoingus: 'Spoingus behaved well this week.',
+    banana: 'He gets bullied at school.',
+    crying: 'Crying because he is stuck in this game.',
+    sus: 'Feeling watched by you.',
+    vibing: 'He is vibing.',
+    apple: 'Can I come over and stare at you like this?',
+    bop: 'Please do not get near him.',
+    olli: 'He is very polite',
+    nyan: 'Nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan',
+    smurf: 'We live, we love, we lie.',
+    'milk-face': 'His Greed Was His Downfall',
+    'full-of-soup': 'Please do not shake him.',
+    biting: 'He meant well!',
+    dissociating: 'He has no idea what you told him a minute ago.',
+    smudge: '"They took my license but not my keys"',
+    happy: '♫ happy happy happy ♫',
+  };
 
   // slugs from www.knowyourmeme.com
   const about = {
@@ -161,5 +167,6 @@ export const useCatData = () => {
     unlockable,
     finalCats,
     about,
+    catText,
   };
 };

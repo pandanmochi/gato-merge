@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import { Window } from './Window';
+import { useCatData } from '../hooks/useCatData';
 
 export const NewCatWindow = ({ name, onClose, isFinal }) => {
+  const { catText } = useCatData();
   return (
-    <div className="absolute top-20 z-30 flex w-full items-center justify-center">
+    <div className="absolute top-20 z-30 flex w-full items-center justify-center px-96">
       <Window
         windowTitle="new cat!"
         tabColor="bg-gato-yellow-2"
@@ -17,9 +19,9 @@ export const NewCatWindow = ({ name, onClose, isFinal }) => {
             src={`src/assets/images/cats/${name}.png`}
             className="h-80 w-80 object-contain"
           />
-          <div className="text-center">He is very sneaky</div>
+          <div className="my-4 text-center italic">{catText[name]}</div>
           {isFinal && (
-            <div className="text-center">{`${name} has no children and is a final cat!`}</div>
+            <div className="text-center text-sm font-semibold">{`${name} has no children and is a final cat!`}</div>
           )}
           <div className="h-20 w-full text-center">
             <button
