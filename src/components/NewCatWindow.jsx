@@ -8,6 +8,8 @@ export const NewCatWindow = ({ name, onClose, isFinal }) => {
         windowTitle="new cat!"
         tabColor="bg-gato-yellow-2"
         bgColor="bg-gato-yellow-1"
+        closeButton={true}
+        onClose={onClose}
       >
         <div className="flex flex-col items-center px-12 py-10">
           <div className="text-center text-xl font-medium">{name}</div>

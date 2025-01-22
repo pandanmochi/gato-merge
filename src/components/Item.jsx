@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const Item = ({ name, isCatMenu = false }) => {
+export const Item = ({ name, isCatMenu = false, isLibrary = false }) => {
   const itemRef = useRef(null);
 
   useEffect(() => {
@@ -25,15 +25,20 @@ export const Item = ({ name, isCatMenu = false }) => {
   }, [name]);
 
   return (
-    <div className="flex h-32 flex-row items-center space-x-3">
+    <div
+      className={
+        'flex h-32 items-center space-x-3 ' +
+        (isLibrary ? 'flex-col' : 'flex-row')
+      }
+    >
       <img
         src={`/src/assets/images/cats/${name}.png`}
-        className="h-28 w-28 object-contain"
+        className={'h-28 w-28 object-contain'}
         alt={name}
-        draggable={true}
+        draggable={isLibrary ? false : true}
         ref={itemRef}
       />
-      {isCatMenu && <span className="text-center">{name}</span>}
+      {(isCatMenu || isLibrary) && <div className="text-center">{name}</div>}
     </div>
   );
 };

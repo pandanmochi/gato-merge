@@ -4,6 +4,8 @@ import { useRef } from 'react';
 import { NewCatWindow } from './NewCatWindow';
 import { useGatoStore } from '../stores/gato';
 import { RetireWindow } from './RetireWindow';
+import { useLibraryStore } from '../stores/library';
+import { Library } from './Library';
 
 export const GatoMerge = () => {
   const {
@@ -34,7 +36,10 @@ export const GatoMerge = () => {
     presents,
     combinations,
     finalCats,
+    unlockedCats,
   } = useGatoStore();
+
+  const { showLibraryWindow, setShowLibraryWindow } = useLibraryStore();
 
   const workBenchRef = useRef(null);
 
@@ -156,7 +161,7 @@ export const GatoMerge = () => {
   };
 
   /**
-   * Closes the retired cat window.
+   * Closes the retired Cat window A.
    * @returns {void}
    * */
   const closeRetiredWindowA = () => {
@@ -164,18 +169,39 @@ export const GatoMerge = () => {
   };
 
   /**
-   * Closes the retired cat window.
+   * Closes the retired cat window B.
    * @returns {void}
    * */
   const closeRetiredWindowB = () => {
     setShowRetiredWindowB(false);
   };
 
+  /**
+   * Opens the library window.
+   * @returns {void}
+   * */
+  const openLibrary = () => {
+    setShowLibraryWindow(true);
+    console.log(showLibraryWindow);
+  };
+
+  /**
+   * Closes the library window.
+   * @returns {void}
+   * */
+  const closeLibrary = () => {
+    setShowLibraryWindow(false);
+  };
+
   return (
     <div className="flex min-h-screen w-screen flex-col bg-gato-blue-1 font-mono text-gato-blue-3">
       <div className="flex h-full w-full gap-6 p-6">
         <div ref={workBenchRef} className="w-3/4">
-          <WorkBench items={workBenchItems} onItemDrop={handleItemDrop} />
+          <WorkBench
+            items={workBenchItems}
+            onItemDrop={handleItemDrop}
+            onOpenLibrary={openLibrary}
+          />
         </div>
         <div className="w-1/4">
           <CatMenu selectableCats={menu} presents={presents} />
@@ -192,6 +218,9 @@ export const GatoMerge = () => {
         )}
         {showRetiredWindowB && (
           <RetireWindow name={retiredCatB} onClose={closeRetiredWindowB} />
+        )}
+        {showLibraryWindow && (
+          <Library unlockedCats={unlockedCats} onClose={closeLibrary} />
         )}
       </div>
     </div>

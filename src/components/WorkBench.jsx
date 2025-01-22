@@ -1,7 +1,7 @@
 import { Item } from './Item';
 import { Window } from './Window';
 
-export const WorkBench = ({ items, onItemDrop }) => {
+export const WorkBench = ({ items, onItemDrop, onOpenLibrary }) => {
   /**
    * Handles drop events triggered by items dropped over the working area.
    */
@@ -40,7 +40,14 @@ export const WorkBench = ({ items, onItemDrop }) => {
             className="absolute bottom-4 right-4 h-12 w-12"
           />
         </div>
-        <div className="">hello</div>
+        <div onClick={onOpenLibrary} className="flex h-12 items-center pt-4">
+          <img
+            id="library"
+            src="/src/assets/images/icons/book-icon.svg"
+            className="h-10 w-10 hover:h-11 hover:w-11"
+          />
+          <div className="text-sm">Library</div>
+        </div>
       </div>
     </Window>
   );

@@ -8,6 +8,8 @@ export const RetireWindow = ({ name, onClose }) => {
         windowTitle="retirement-notice"
         tabColor="bg-gato-blue-4"
         bgColor="bg-gato-yellow-1"
+        closeButton={true}
+        onClose={onClose}
       >
         <div className="px-12 py-10">
           <div className="text-center text-xl font-medium">{name}</div>
