@@ -9,6 +9,7 @@ export const Present = ({ index }) => {
     setNewCatName,
     removeMenuItem,
     setNewCatIsFinal,
+    addToUnlockedCats,
   } = useGatoStore();
   const itemRef = useRef(null);
 
@@ -16,6 +17,7 @@ export const Present = ({ index }) => {
     const newCat = getPresentToOpen();
     removeMenuItem(index);
     addToMenu(newCat);
+    addToUnlockedCats(newCat);
     setNewCatName(newCat);
     setNewCatIsFinal(false);
     setShowNewCatWindow(true);
