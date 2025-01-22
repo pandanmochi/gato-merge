@@ -182,7 +182,6 @@ export const GatoMerge = () => {
    * */
   const openLibrary = () => {
     setShowLibraryWindow(true);
-    console.log(showLibraryWindow);
   };
 
   /**

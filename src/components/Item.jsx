@@ -1,6 +1,11 @@
 import { useEffect, useRef } from 'react';
 
-export const Item = ({ name, isCatMenu = false, isLibrary = false }) => {
+export const Item = ({
+  name,
+  isCatMenu = false,
+  isLibrary = false,
+  onClick,
+}) => {
   const itemRef = useRef(null);
 
   useEffect(() => {
@@ -24,10 +29,17 @@ export const Item = ({ name, isCatMenu = false, isLibrary = false }) => {
     };
   }, [name]);
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick(name);
+    }
+  };
+
   return (
     <div
+      onClick={handleClick}
       className={
-        'flex h-32 items-center space-x-3 ' +
+        'flex h-32 items-center space-x-3 hover:cursor-pointer ' +
         (isLibrary ? 'flex-col' : 'flex-row')
       }
     >
