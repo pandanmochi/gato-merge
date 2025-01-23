@@ -14,7 +14,7 @@ export const RetireWindow = ({ name, onClose }) => {
         <div className="px-12 py-10">
           <div className="text-center text-xl font-medium">{name}</div>
           <img
-            src={`src/assets/images/cats/${name}.png`}
+            src={`/assets/images/cats/${name}.png`}
             className="h-32 w-32 object-contain"
           />
           <div className="text-center">retired</div>

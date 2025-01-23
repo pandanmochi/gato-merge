@@ -20,7 +20,7 @@ export default {
       },
     },
     backgroundImage: {
-      'blue-checkerboard': "url('/src/assets/images/checkerboard_pattern.png')",
+      'blue-checkerboard': "url('/assets/images/checkerboard_pattern.png')",
     },
   },
   plugins: [],

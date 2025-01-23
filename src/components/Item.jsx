@@ -44,7 +44,7 @@ export const Item = ({
       }
     >
       <img
-        src={`/src/assets/images/cats/${name}.png`}
+        src={`/assets/images/cats/${name}.png`}
         className={'h-28 w-28 object-contain'}
         alt={name}
         draggable={isLibrary ? false : true}
