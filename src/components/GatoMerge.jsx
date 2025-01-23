@@ -123,7 +123,7 @@ export const GatoMerge = () => {
     const comboKey = [catA, catB].sort().join(', ');
     const comboVal = combinations[comboKey];
 
-    if (typeof comboVal === 'string') {
+    if (typeof comboVal === 'string' && !unlockedCats.includes(comboVal)) {
       mergeItems(startPosition, targetPosition, comboVal);
 
       if (!menu.includes(comboVal)) {
@@ -135,7 +135,7 @@ export const GatoMerge = () => {
           setNewCatIsFinal(true);
           removeNameFromWorkBench(comboVal);
         }
-        if (!unlockedCats.includes(comboVal)) addToUnlockedCats(comboVal);
+        addToUnlockedCats(comboVal);
         setNewCatName(comboVal);
         setShowNewCatWindow(true);
 
