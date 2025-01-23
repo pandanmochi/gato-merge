@@ -16,6 +16,7 @@ export const useGatoStore = create((set, get) => {
     retiredCatB: '',
     showRetiredWindowA: false,
     showRetiredWindowB: false,
+    showStartWindow: true,
     showFinishedWindow: false,
     combinations,
     unlockable,
@@ -29,6 +30,7 @@ export const useGatoStore = create((set, get) => {
     setShowRetiredWindowA: (show) => set({ showRetiredWindowA: show }),
     setShowRetiredWindowB: (show) => set({ showRetiredWindowB: show }),
     setShowFinishedWindow: (show) => set({ showFinishedWindow: show }),
+    setShowStartWindow: (show) => set({ showStartWindow: show }),
 
     addToWorkbenchItems: (name) => {
       const { workBenchItems } = get();

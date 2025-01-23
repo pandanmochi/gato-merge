@@ -7,6 +7,7 @@ import { RetireWindow } from './RetireWindow';
 import { useLibraryStore } from '../stores/library';
 import { Library } from './Library';
 import { FinishWindow } from './FinishWindow';
+import { StartWindow } from './StartWindow';
 
 export const GatoMerge = () => {
   const {
@@ -29,6 +30,8 @@ export const GatoMerge = () => {
     showRetiredWindowB,
     setShowRetiredWindowA,
     setShowRetiredWindowB,
+    showStartWindow,
+    setShowStartWindow,
     showFinishedWindow,
     setShowFinishedWindow,
     hasChildrenLeft,
@@ -198,6 +201,13 @@ export const GatoMerge = () => {
     setShowLibraryWindow(false);
   };
 
+  /**
+   * Closes the start window.
+   * @returns {void}
+   * */
+  const closeStartWindow = () => {
+    setShowStartWindow(false);
+  };
   return (
     <div className="flex min-h-screen w-screen flex-col overflow-hidden bg-gato-blue-1 font-mono text-gato-blue-3">
       <div className="flex h-full w-full gap-6 p-6">
@@ -228,6 +238,7 @@ export const GatoMerge = () => {
           <Library unlockedCats={unlockedCats} onClose={closeLibrary} />
         )}
         {showFinishedWindow && <FinishWindow />}
+        {showStartWindow && <StartWindow onClose={closeStartWindow} />}
       </div>
     </div>
   );
