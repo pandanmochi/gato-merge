@@ -80,6 +80,9 @@ export const useCatData = () => {
     dissociating: 'He has no idea what you told him a minute ago.',
     smudge: '"They took my license but not my keys"',
     happy: '♫ happy happy happy ♫',
+    'super-crying': 'Crying because he is stuck in this game.',
+    'banana-crying':
+      'Crying because he gets bullied at school and because he is stuck in this game.',
   };
 
   // slugs from www.knowyourmeme.com
