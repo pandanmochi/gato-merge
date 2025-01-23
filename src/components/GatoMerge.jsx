@@ -6,6 +6,7 @@ import { useGatoStore } from '../stores/gato';
 import { RetireWindow } from './RetireWindow';
 import { useLibraryStore } from '../stores/library';
 import { Library } from './Library';
+import { FinishWindow } from './FinishWindow';
 
 export const GatoMerge = () => {
   const {
@@ -28,6 +29,8 @@ export const GatoMerge = () => {
     showRetiredWindowB,
     setShowRetiredWindowA,
     setShowRetiredWindowB,
+    showFinishedWindow,
+    setShowFinishedWindow,
     hasChildrenLeft,
     menu,
     addToMenu,
@@ -129,7 +132,7 @@ export const GatoMerge = () => {
           setNewCatIsFinal(true);
           removeNameFromWorkBench(comboVal);
         }
-        addToUnlockedCats(comboVal);
+        if (!unlockedCats.includes(comboVal)) addToUnlockedCats(comboVal);
         setNewCatName(comboVal);
         setShowNewCatWindow(true);
 
@@ -158,6 +161,9 @@ export const GatoMerge = () => {
    * */
   const closeNewCatWindow = () => {
     setShowNewCatWindow(false);
+    if (workBenchItems.length == 0 && menu.length == 0) {
+      setShowFinishedWindow(true);
+    }
   };
 
   /**
@@ -221,6 +227,7 @@ export const GatoMerge = () => {
         {showLibraryWindow && (
           <Library unlockedCats={unlockedCats} onClose={closeLibrary} />
         )}
+        {showFinishedWindow && <FinishWindow />}
       </div>
     </div>
   );

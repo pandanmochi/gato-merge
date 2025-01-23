@@ -69,6 +69,7 @@ export const useCatData = () => {
     sus: 'Feeling watched by you.',
     vibing: 'He is vibing.',
     apple: 'Can I come over and stare at you like this?',
+    'apple-cat': 'One apple a day keeps the doctor away.',
     bop: 'Please do not get near him.',
     olli: 'He is very polite',
     nyan: 'Nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan',
