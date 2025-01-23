@@ -2,9 +2,9 @@ import { Window } from './Window';
 
 export const FinishWindow = () => {
   return (
-    <div className="absolute top-20 z-30 flex w-full items-center justify-center px-96">
+    <div className="absolute top-60 z-30 flex w-full items-center justify-center px-96">
       <Window
-        windowTitle="new cat!"
+        windowTitle="you won!"
         tabColor="bg-gato-yellow-2"
         bgColor="bg-gato-yellow-1"
         closeButton={true}
