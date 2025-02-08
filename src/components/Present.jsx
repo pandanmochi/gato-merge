@@ -30,7 +30,7 @@ export const Present = ({ index }) => {
     >
       <div className="h-28 w-28 p-3">
         <img
-          src={`/assets/images/gift.png`}
+          src={`/gato-merge/assets/images/gift.png`}
           className="object-contain"
           alt="present"
           title="Icon created by Eucalyp"

@@ -36,14 +36,14 @@ export const WorkBench = ({ items, onItemDrop, onOpenLibrary }) => {
           ))}
           <img
             id="trashcan"
-            src="/assets/images/icons/trash-icon.svg"
+            src="/gato-merge/assets/images/icons/trash-icon.svg"
             className="absolute bottom-4 right-4 h-12 w-12"
           />
         </div>
         <div onClick={onOpenLibrary} className="flex h-12 items-center pt-4">
           <img
             id="library"
-            src="/assets/images/icons/book-icon.svg"
+            src="/gato-merge/assets/images/icons/book-icon.svg"
             className="h-10 w-10 hover:h-11 hover:w-11"
           />
           <div className="text-sm">Library</div>

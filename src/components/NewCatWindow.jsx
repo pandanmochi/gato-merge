@@ -16,7 +16,7 @@ export const NewCatWindow = ({ name, onClose, isFinal }) => {
         <div className="flex flex-col items-center px-12 py-10">
           <div className="text-center text-xl font-medium">{name}</div>
           <img
-            src={`/assets/images/cats/${name}.png`}
+            src={`/gato-merge/assets/images/cats/${name}.png`}
             className="h-80 w-80 object-contain"
           />
           <div className="my-4 text-center italic">{catText[name]}</div>

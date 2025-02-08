@@ -9,12 +9,12 @@ export const About = ({ name, onGoBack }) => {
       <img
         onClick={onGoBack}
         id="back"
-        src="/assets/images/icons/back-icon.svg"
+        src="/gato-merge/assets/images/icons/back-icon.svg"
         className="mb-2 h-6 w-6 place-self-start hover:cursor-pointer"
       />
       <h1 className="text-center text-xl font-bold">{name}</h1>
       <img
-        src={`/assets/images/cats/${name}.png`}
+        src={`/gato-merge/assets/images/cats/${name}.png`}
         className="my-8 h-48 w-48 object-contain"
       />
       {hasAboutData && (
