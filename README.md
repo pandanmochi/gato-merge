@@ -17,7 +17,7 @@ gato-merge is a game where you try to merge together two cats to acquire another
 To run the app locally, the following software is needed on your system:
 
 - Node.js
-- npm (usually comes with Node.js)
+- npm 10.9.0 (or higher, though it's not guaranteed with npm 11)
 
 ## Installation
 
