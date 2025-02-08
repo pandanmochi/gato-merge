@@ -20,21 +20,21 @@ export const About = ({ name, onGoBack }) => {
       <div className="h-52 overflow-scroll">
         <h2 className="mb-2 font-bold">About</h2>
         {hasAboutData ? (
-            <p className="text-sm">
+          <p className="text-sm">
             &quot;{about[name]['text']}&quot; [KnowYourMeme, Jan 2025](
             <a
-                href={`https://knowyourmeme.com/memes/${about[name]['slug']}`}
-                target="_blank"
-                className="text-gato-violet"
+              href={`https://knowyourmeme.com/memes/${about[name]['slug']}`}
+              target="_blank"
+              className="text-gato-violet"
             >
-                Find out more
+              Find out more
             </a>
             )
-            </p> 
+          </p>
         ) : (
-            <p className="text-sm">
-                This cat has no entry yet. But it&apos;s happy that you unlocked it.
-            </p>
+          <p className="text-sm">
+            This cat has no entry yet. But it&apos;s happy that you unlocked it.
+          </p>
         )}
       </div>
     </div>
