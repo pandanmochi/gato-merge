@@ -61,8 +61,6 @@ export const useGatoStore = create((set, get) => {
 
     addToMenu: (name) => {
       const { menu } = get();
-      console.log(name);
-      console.log(unlockable[name]);
       set({ menu: [...menu, name] });
     },
 
@@ -77,7 +75,6 @@ export const useGatoStore = create((set, get) => {
 
     removeNameFromMenu: (name) => {
       const { menu } = get();
-      console.log(menu);
       const newMenu = menu.filter((cat) => cat !== name);
       set({ menu: newMenu });
     },
@@ -93,7 +90,6 @@ export const useGatoStore = create((set, get) => {
     hasChildrenLeft: (name) => {
       const { unlockedCats } = get();
       for (const key in combinations) {
-        console.log(`includes key ${name}: ${key.includes(name)}`);
         if (key.includes(name) && !unlockedCats.includes(combinations[key])) {
           return true;
         }

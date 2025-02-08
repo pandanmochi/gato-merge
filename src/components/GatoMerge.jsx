@@ -119,7 +119,6 @@ export const GatoMerge = () => {
    * @param {number} targetPosition
    */
   const mergeCats = (catA, catB, targetPosition, startPosition) => {
-    console.log(catA, catB, targetPosition);
     const comboKey = [catA, catB].sort().join(', ');
     const comboVal = combinations[comboKey];
 
@@ -130,7 +129,6 @@ export const GatoMerge = () => {
         if (!finalCats.includes(comboVal)) {
           addToMenu(comboVal);
           setNewCatIsFinal(false);
-          console.log(newCatIsFinal);
         } else {
           setNewCatIsFinal(true);
           removeNameFromWorkBench(comboVal);
@@ -140,22 +138,26 @@ export const GatoMerge = () => {
         setShowNewCatWindow(true);
 
         if (!hasChildrenLeft(catA)) {
-          setRetiredCatA(catA);
-          setShowRetiredWindowA(true);
-          removeNameFromMenu(catA);
-          removeNameFromWorkBench(catA);
-          console.log(`${catA} has no children left`);
+          retireCat(catA)
         }
 
         if (!hasChildrenLeft(catB)) {
-          setRetiredCatB(catB);
-          setShowRetiredWindowB(true);
-          removeNameFromMenu(catB);
-          removeNameFromWorkBench(catB);
-          console.log(`${catB} has no children left`);
+          retireCat(catB)
         }
       }
     }
+  };
+
+  /**
+   * Retires cat from the gameflow.
+   * @param {string} cat
+   * @returns {void}
+   * */
+  const retireCat = (cat) => {
+    setRetiredCatB(cat);
+    setShowRetiredWindowB(true);
+    removeNameFromMenu(cat);
+    removeNameFromWorkBench(cat);
   };
 
   /**
@@ -208,6 +210,7 @@ export const GatoMerge = () => {
   const closeStartWindow = () => {
     setShowStartWindow(false);
   };
+
   return (
     <div className="flex min-h-screen w-screen flex-col overflow-hidden bg-gato-blue-1 font-mono text-gato-blue-3">
       <div className="flex h-full w-full gap-6 p-6">
