@@ -1,6 +1,8 @@
 # gato-merge
 
-gato-merge is a game where you try to merge together two cats to acquire another cat. New cats unlock new combinations, which will eventually lead you to the final cats!
+gato-merge is a game where you try to merge together two cats to acquire another cat. New cats unlock new combinations, which will eventually lead you to the final cats! Try it out here:
+
+https://pandanmochi.github.io/gato-merge/
 
 ## Features
 
