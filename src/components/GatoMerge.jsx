@@ -138,26 +138,20 @@ export const GatoMerge = () => {
         setShowNewCatWindow(true);
 
         if (!hasChildrenLeft(catA)) {
-          retireCat(catA)
+          setRetiredCatA(catA);
+          setShowRetiredWindowA(true);
+          removeNameFromMenu(catA);
+          removeNameFromWorkBench(catA);
         }
 
         if (!hasChildrenLeft(catB)) {
-          retireCat(catB)
+          setRetiredCatB(catB);
+          setShowRetiredWindowB(true);
+          removeNameFromMenu(catB);
+          removeNameFromWorkBench(catB);
         }
       }
     }
-  };
-
-  /**
-   * Retires cat from the gameflow.
-   * @param {string} cat
-   * @returns {void}
-   * */
-  const retireCat = (cat) => {
-    setRetiredCatB(cat);
-    setShowRetiredWindowB(true);
-    removeNameFromMenu(cat);
-    removeNameFromWorkBench(cat);
   };
 
   /**
